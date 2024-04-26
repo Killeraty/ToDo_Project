@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    ALL Subtasks
+{% endblock %}
+
+{% block content %}
+    <div class="subtasks">
+        {% if subtasks %}
+            {% for subtask in subtasks %}
+                <a href="{% url 'router:tasks:subtask-info' subtask.id %}" class="subtask-link">
+                        <div class="subtask-block">
+                            <h2 class="subtask-block-info"><span class="subtask-info-fields">Title: </span>{{ subtask.title }}</h2>
+                            <h4 class="subtask-block-info"><span class="subtask-info-fields">Category: </span>{{ subtask.category }}</h4>
+                            <h4 class="subtask-block-info"><span class="subtask-info-fields">Status: </span><b>{{ subtask.status }}</b></h4>
+                            <p class="subtask-block-info"><span class="subtask-info-fields">Description: </span>{{ subtask.description }}</p>
+                            <h4 class="subtask-block-info"><span class="subtask-info-fields">Creator: </span>{{ subtask.creator }}</h4>
+                            <h4 class="subtask-block-info"><span class="subtask-info-fields">Date started: </span>{{ subtask.date_started }}</h4>
+                            <h4 class="subtask-block-info"><span class="subtask-info-fields">Deadline: </span>{{ subtask.deadline }}</h4>
+                        </div>
+            {% endfor %}            
+        {% else %}
+            <div class="no-subtasks-block">
+                <h1> У Вас нет подзадач.</h1>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
